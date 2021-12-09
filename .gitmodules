@@ -1,0 +1,6 @@
+[submodule "external/lidgren"]
+	path = external/lidgren
+	url = https://github.com/lidgren/lidgren-network-gen3.git
+[submodule "external/websocket"]
+	path = external/websocket
+	url = https://github.com/sta/websocket-sharp.git
