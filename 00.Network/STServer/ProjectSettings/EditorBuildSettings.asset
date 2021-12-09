@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/STBoot.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Logic/STConfigScene.unity
+    guid: 62ed56762a3ac40f2a90d224a9237139
+  - enabled: 1
+    path: Assets/Scenes/Logic/STClientScene.unity
+    guid: 89c040373d13c487683228346574cd10
+  - enabled: 1
+    path: Assets/Scenes/Logic/STServerScene.unity
+    guid: bdd21606a6b0147b8bb12ceb892d4d04
   m_configObjects: {}
