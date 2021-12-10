@@ -39,14 +39,25 @@ namespace Manager
 
             mEntityDic.Add(packet.ID, entityInstance);
 
+            Transform cameraTrans = entityInstance.transform.Find("Main Camera");
+
             if (packet.ID == mLocalEntityID)
             {
                 entityInstance.AddComponent<STController>();
                 entityInstance.transform.name = "LocalEntity";
+                if (null != cameraTrans)
+                {
+                    cameraTrans.gameObject.SetActive(true);
+                }
             }
             else
             {
+                entityInstance.AddComponent<STMovement>();
                 entityInstance.transform.name = packet.ID;
+                if (null != cameraTrans)
+                {
+                    cameraTrans.gameObject.SetActive(false);
+                }
             }
         }
 

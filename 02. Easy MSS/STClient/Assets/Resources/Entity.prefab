@@ -53,7 +53,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -107,7 +106,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2271129984384999515}
   - component: {fileID: 2271129984384999516}
-  - component: {fileID: 2271129984384999517}
   m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -172,11 +170,3 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &2271129984384999517
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2271129984384999518}
-  m_Enabled: 1
