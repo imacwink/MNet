@@ -1,0 +1,32 @@
+﻿<Properties StartupConfiguration="{2D9EFF24-8968-8FDC-E7BA-5BEED3C17CB2}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/STBoot.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Logic/Manager/STEntityManager.cs" Line="37" Column="31" />
+      <File FileName="Assets/Scripts/STBoot.cs" Line="6" Column="15" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="STClient" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Logic" expanded="True">
+                  <Node name="Manager" expanded="True" />
+                  <Node name="UI" expanded="True" />
+                </Node>
+                <Node name="STBoot.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="f73ba620-9276-4c9f-aba8-3fe465f65bfe" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
