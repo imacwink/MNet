@@ -1,5 +1,6 @@
 using Lidgren.Network;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Server
 {
@@ -33,7 +34,8 @@ namespace Server
             NetIncomingMessage msg;
             while ((msg = mServer.ReadMessage()) != null)
             {
-                Debug.Log("Recevied msg!");
+                List<NetConnection> all = mServer.Connections;
+                Debug.Log("Recevied msg! mServer.Connections cnt ：" + all.Count);
             }
         }
 

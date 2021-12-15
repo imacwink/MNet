@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{E4B0AFDC-EC66-396C-4362-A7C62DDF5B0E}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Server/STServer.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Server/STServer.cs" Line="3" Column="1" />
+      <File FileName="Assets/Scripts/Client/STClient.cs" Line="29" Column="34" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="STServer" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Client" expanded="True" />
+                <Node name="Server" expanded="True">
+                  <Node name="STServer.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Unity" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="4767ecb3-ccce-433e-b57f-3c9c5a24e535" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
