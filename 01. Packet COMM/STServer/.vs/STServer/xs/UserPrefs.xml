@@ -1,0 +1,52 @@
+﻿<Properties StartupConfiguration="{E4B0AFDC-EC66-396C-4362-A7C62DDF5B0E}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Logic/Manager/STEntityManager.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Common/Protocol/STPacket.cs" Line="5" Column="1" />
+      <File FileName="Assets/Scripts/Common/Protocol/ISTPacket.cs" Line="5" Column="1" />
+      <File FileName="Assets/Scripts/Common/Protocol/STEntityDisconnectsPacket.cs" Line="11" Column="42" />
+      <File FileName="Assets/Scripts/Common/Protocol/STPacketType.cs" Line="8" Column="2" />
+      <File FileName="Assets/Scripts/Server/STServer.cs" Line="134" Column="10" />
+      <File FileName="Assets/Scripts/Logic/Entity/STEntityPostion.cs" Line="1" Column="17" />
+      <File FileName="Assets/Scripts/Client/STClient.cs" Line="73" Column="1" />
+      <File FileName="Assets/Scripts/Logic/Manager/STEntityManager.cs" Line="47" Column="14" />
+      <File FileName="Assets/Scripts/STBoot.cs" Line="30" Column="1" />
+      <File FileName="Assets/Scripts/Logic/UI/UIServer/UIServer.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Logic/UI/UIClient/UIClient.cs" Line="18" Column="48" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="STServer" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Client" expanded="True" />
+                <Node name="Common" expanded="True">
+                  <Node name="Protocol" expanded="True" />
+                </Node>
+                <Node name="Logic" expanded="True">
+                  <Node name="Entity" expanded="True" />
+                  <Node name="Manager" expanded="True">
+                    <Node name="STEntityManager.cs" selected="True" />
+                  </Node>
+                  <Node name="UI" expanded="True">
+                    <Node name="UIClient" expanded="True" />
+                    <Node name="UIConfig" expanded="True" />
+                    <Node name="UIServer" expanded="True" />
+                  </Node>
+                </Node>
+                <Node name="Server" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="1bd891b0-b6e9-4874-8b1a-a883f59e25c4" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
