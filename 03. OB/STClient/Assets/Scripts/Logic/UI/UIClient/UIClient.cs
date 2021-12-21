@@ -20,12 +20,13 @@ public class UIClient : MonoBehaviour
     {
         mBack.onClick.AddListener(OnBackEvent);
 
-        STEntityManager.GetInstance().Init(mPort, mServerIP, mServerName);
+        STClientNetworkManager.GetInstance().Init(mPort, mServerIP, mServerName);
+        STEntityManager.GetInstance().Init();
     }
 
     private void OnBackEvent()
     {
-        STEntityManager.GetInstance().SendDisconnect();
+        STClientNetworkManager.GetInstance().SendDisconnect();
         STStateMachine.ChangeState(STStateConfig.s_stateName);
     }
 }

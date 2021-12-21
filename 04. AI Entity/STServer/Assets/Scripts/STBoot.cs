@@ -38,6 +38,6 @@ public class STBoot : STMonoSingleton<STBoot>
 
 	private void OnApplicationQuit()
 	{
-		STEntityManager.GetInstance().SendDisconnect();
+		STClientNetworkManager.GetInstance().SendDisconnect();
 	}
 }

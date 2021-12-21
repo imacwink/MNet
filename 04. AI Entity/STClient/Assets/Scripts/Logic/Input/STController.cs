@@ -46,7 +46,7 @@ public class STController : MonoBehaviour
                 moveInput.y = -mStep;
             }
 
-            STEntityManager.GetInstance().SendPosition(transform.position.x + moveInput.x, 0, transform.position.z + moveInput.y);
+            STClientNetworkManager.GetInstance().SendPosition(transform.position.x + moveInput.x, 0, transform.position.z + moveInput.y);
         }
     }
 }

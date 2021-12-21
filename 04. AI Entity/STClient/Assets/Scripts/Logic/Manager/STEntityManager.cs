@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Common;
-using Client;
-using Lidgren.Network;
 using Protocol;
 
 namespace Manager
@@ -10,20 +8,22 @@ namespace Manager
     public class STEntityManager : STMonoSingleton<STEntityManager>
     {
         public string mLocalEntityID { get; set; }
-        public STClient mSTClient { get; set; }
         public Dictionary<string, GameObject> mEntityDic { get; set; }
 
-        public void Init(int iPort, string strServerIP, string strServerName)
+        public void Init()
         {
             mLocalEntityID = "";
-            mSTClient = new STClient(strServerName);
-            mSTClient.StartClient(iPort, strServerIP);
             mEntityDic = new Dictionary<string, GameObject>();
         }
 
-        public void SpawnEntity(STSpawnEntityPacket packet)
+        public Dictionary<string, GameObject> AllEntities()
         {
-            Debug.Log("SpawnEntity Enity ID : " + packet.ID);
+            return mEntityDic;
+        }
+
+        public void CreateEntity(string strRoot, STSpawnEntityPacket packet)
+        {
+            Debug.Log("CreateEntity Enity ID : " + packet.ID);
 
             GameObject entityObj = (GameObject)Resources.Load("Entity");
             Vector3 position = new Vector3(packet.X, packet.Y, packet.Z);
@@ -31,7 +31,7 @@ namespace Manager
 
             GameObject entityInstance = Instantiate(entityObj, position, rotation);
 
-            GameObject entityRoot = GameObject.Find("STClientSceneRoot/GameRoot/EntityRoot");
+            GameObject entityRoot = GameObject.Find(strRoot + "/GameRoot/EntityRoot");
             if (null != entityRoot)
             {
                 entityInstance.transform.parent = entityRoot.transform;
@@ -59,31 +59,45 @@ namespace Manager
                     cameraTrans.gameObject.SetActive(false);
                 }
             }
+
+            EntityChange();
         }
 
-        public void SendPosition(float x, float y, float z)
+        public void UpdateEntity(STEntityPositionPacket packet)
         {
-            Debug.Log("SendPosition : [ " + x + "、" + y + "、" + z + "]");
-
-            NetOutgoingMessage msg = mSTClient.mClient.CreateMessage();
-            new STEntityPositionPacket() { ID = mLocalEntityID, X = x, Y = y, Z = z }.Packet2NetOutgoingMessage(msg);
-            mSTClient.mClient.SendMessage(msg, NetDeliveryMethod.ReliableOrdered);
-            mSTClient.mClient.FlushSendQueue();
-        }
-
-        public void SendDisconnect()
-        {
-            if (null != mSTClient)
+            if (mEntityDic.ContainsKey(packet.ID))
             {
-                NetOutgoingMessage msg = mSTClient.mClient.CreateMessage();
-                new STEntityDisconnectsPacket() { ID = mLocalEntityID }.Packet2NetOutgoingMessage(msg);
-                mSTClient.mClient.SendMessage(msg, NetDeliveryMethod.ReliableOrdered);
-                mSTClient.mClient.FlushSendQueue();
-                mSTClient.mClient.Disconnect("Bye bye!");
-
-                mSTClient.ShutDown();
-                mSTClient = null;
+                GameObject obj = mEntityDic[packet.ID];
+                if (null != obj)
+                {
+                    STMovement stMovement = obj.GetComponent<STMovement>();
+                    if (null != stMovement)
+                    {
+                        stMovement.SetMovePosition(new Vector3(packet.X, packet.Y, packet.Z));
+                    }
+                }
             }
+
+            EntityChange();
+        }
+
+        public void RemoveEntity(string strPacketID)
+        {
+            if (mEntityDic.ContainsKey(strPacketID))
+            {
+                GameObject obj = mEntityDic[strPacketID];
+                if (null != obj)
+                    MonoBehaviour.Destroy(obj);
+
+                mEntityDic.Remove(strPacketID);
+            }
+
+            EntityChange();
+        }
+
+        private void EntityChange()
+        {
+            STGlobalEventNotify.GetInstance().SetEvent((int)STGlobalEventDef.EVENT_CMD_UPDATE_OBS_ENTITY, null);
         }
     }
 }

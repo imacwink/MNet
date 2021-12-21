@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using StateMachine;
 using Server;
+using Manager;
 
 public class UIServer : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class UIServer : MonoBehaviour
 
         Application.targetFrameRate = 30; // 后续会设置到 UI 中进行动态配配置;
 
+        STEntityManager.GetInstance().Init();
+
         mServer = new STServer(mMaximumConnections, mPort, mServerIP, mServerName);
         mServer.StartServer();
     }
@@ -37,7 +40,7 @@ public class UIServer : MonoBehaviour
         STStateMachine.ChangeState(STStateConfig.s_stateName);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (mServer != null)
         {

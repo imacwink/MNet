@@ -114,39 +114,19 @@ namespace Client
 		{
 			Debug.Log("ProcessDisconnectEntity Enity ID : " + packet.ID);
 
-			Dictionary<string, GameObject> entityDic = STEntityManager.GetInstance().mEntityDic;
-			if (entityDic.ContainsKey(packet.ID))
-			{
-				GameObject obj = STEntityManager.GetInstance().mEntityDic[packet.ID];
-				if (null != obj)
-					MonoBehaviour.Destroy(obj);
-
-				STEntityManager.GetInstance().mEntityDic.Remove(packet.ID);
-			}
+			STEntityManager.GetInstance().RemoveEntity(packet.ID);
         }
 
 		public void ProcessEntityPosition(STEntityPositionPacket packet)
 		{
 			Debug.Log("ProcessEntityPosition Enity ID : " + packet.ID);
 
-			Dictionary<string, GameObject> entityDic = STEntityManager.GetInstance().mEntityDic;
-			if (entityDic.ContainsKey(packet.ID))
-			{
-				GameObject obj = STEntityManager.GetInstance().mEntityDic[packet.ID];
-				if (null != obj)
-				{
-					STMovement stMovement = obj.GetComponent<STMovement>();
-					if (null != stMovement)
-					{
-						stMovement.SetMovePosition(new Vector3(packet.X, packet.Y, packet.Z));
-					}
-				}
-			}
+			STEntityManager.GetInstance().UpdateEntity(packet);
 		}
 
 		public void ProcessSpawnEntity(STSpawnEntityPacket packet)
 		{
-			STEntityManager.GetInstance().SpawnEntity(packet);
+			STEntityManager.GetInstance().CreateEntity("STClientSceneRoot", packet);
 		}
 		#endregion
 
