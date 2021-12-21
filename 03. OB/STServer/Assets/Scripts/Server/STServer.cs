@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Entity;
 using Protocol;
+using Manager;
 
 namespace Server
 {
@@ -77,13 +78,28 @@ namespace Server
 
             Debug.LogWarning(NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier) + " " + status + ": " + reason);
 
-            if (NetConnectionStatus.Connected == status)
-            {
-                string entityID = NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier);
-                mEntityIDList.Add(entityID);
+            string entityID;
 
-                SendLocalEntityPacket(msg.SenderConnection, entityID);
-                SendSpawnEntitis(all, msg.SenderConnection, entityID);
+            switch (status)
+            {
+                case NetConnectionStatus.Connected:
+                    {
+                        entityID = NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier);
+                        mEntityIDList.Add(entityID);
+
+                        SendLocalEntityPacket(msg.SenderConnection, entityID);
+                        SendSpawnEntitis(all, msg.SenderConnection, entityID);
+                    }
+                    break;
+                case NetConnectionStatus.Disconnected:
+                    {
+                        // Remove Entity (临时处理)
+                        entityID = NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier);
+                        STEntityManager.GetInstance().RemoveEntity(entityID);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -144,8 +160,10 @@ namespace Server
             packet.Y = Y;
             packet.Z = Z;
             packet.Packet2NetOutgoingMessage(outgoingMessage);
-
             mServer.SendMessage(outgoingMessage, all, NetDeliveryMethod.ReliableOrdered, 0);
+
+            // Create Server Entity
+            STEntityManager.GetInstance().CreateEntity("STServerSceneRoot", packet);
         }
         #endregion
 
@@ -183,6 +201,9 @@ namespace Server
             NetOutgoingMessage outgoingMessage = mServer.CreateMessage();
             packet.Packet2NetOutgoingMessage(outgoingMessage);
             mServer.SendMessage(outgoingMessage, all, NetDeliveryMethod.ReliableOrdered, 0);
+
+            // Update Entity Position
+            STEntityManager.GetInstance().UpdateEntity(packet);
         }
 
         public void SendEntityDisconnectPacket(List<NetConnection> all, STEntityDisconnectsPacket packet)

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 596165138800438947}
   - component: {fileID: 3256657303330053161}
   - component: {fileID: 5910756344438627359}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: Entity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -106,13 +107,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2271129984384999515}
   - component: {fileID: 2271129984384999516}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2271129984384999515
 Transform:
   m_ObjectHideFlags: 0
@@ -158,7 +159,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 520
+    m_Bits: 8
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
