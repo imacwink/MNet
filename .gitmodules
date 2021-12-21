@@ -5,5 +5,5 @@
 	path = external/websocket
 	url = https://github.com/sta/websocket-sharp.git
 [submodule "external/behaviac"]
-	path = external/websocket
+	path = external/behaviac
 	url = https://github.com/Tencent/behaviac.git
