@@ -21,9 +21,9 @@ namespace Manager
             return mEntityDic;
         }
 
-        public void CreateEntity(string strRoot, STSpawnEntityPacket packet)
+        public void CreateEntity(string strRoot, STSpawnEntityPacket packet, bool isGhost = false)
         {
-            Debug.Log("CreateEntity Enity ID : " + packet.ID);
+            Debug.Log("CreateEntity ID : " + packet.ID);
 
             GameObject entityObj = (GameObject)Resources.Load("Entity");
             Vector3 position = new Vector3(packet.X, packet.Y, packet.Z);
@@ -58,6 +58,25 @@ namespace Manager
                 {
                     cameraTrans.gameObject.SetActive(false);
                 }
+            }
+
+            if (isGhost)
+            {
+                GameObject aiObj = new GameObject("server_player_ai");
+                aiObj.transform.parent = entityInstance.transform;
+                aiObj.name = "server_player_ai";
+                STCommonAI ai = aiObj.AddComponent<STCommonAI>();
+                ai.InitAI(aiObj.name);
+                if (ai.btload(aiObj.name))
+                {
+                    ai.btsetcurrent(aiObj.name);
+                }
+                else
+                {
+                    Debug.LogError("btload error !!!");
+                }
+                ai.SetIdFlag(1);
+                STBehaviacAIManager.GetInstance().RegisterAent(ai);
             }
 
             EntityChange();

@@ -163,7 +163,7 @@ namespace Server
             mServer.SendMessage(outgoingMessage, all, NetDeliveryMethod.ReliableOrdered, 0);
 
             // Create Server Entity
-            STEntityManager.GetInstance().CreateEntity("STServerSceneRoot", packet);
+            STEntityManager.GetInstance().CreateEntity("STServerSceneRoot", packet, true);
         }
         #endregion
 

@@ -24,6 +24,7 @@ public class UIServer : MonoBehaviour
         Application.targetFrameRate = 30; // 后续会设置到 UI 中进行动态配配置;
 
         STEntityManager.GetInstance().Init();
+        STBehaviacAIManager.GetInstance().Init();
 
         mServer = new STServer(mMaximumConnections, mPort, mServerIP, mServerName);
         mServer.StartServer();
@@ -45,6 +46,7 @@ public class UIServer : MonoBehaviour
         if (mServer != null)
         {
             mServer.ProcessServerListen();
+            STBehaviacAIManager.GetInstance().ExecuteOneFrame();
         }
     }
 

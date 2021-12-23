@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--EXPORTED BY TOOL, DON'T MODIFY IT!-->
+<!--Source File: server_player_ai.xml-->
+<behavior name="server_player_ai" agenttype="STCommonAI" version="5">
+  <node class="DecoratorLoop" id="0">
+    <property Count="const int -1" />
+    <property DecorateWhenChildEnds="true" />
+    <property DoneWithinFrame="false" />
+    <node class="SequenceStochastic" id="1">
+      <node class="Sequence" id="2">
+        <node class="DecoratorLoop" id="7">
+          <property Count="const int 10" />
+          <property DecorateWhenChildEnds="true" />
+          <property DoneWithinFrame="false" />
+          <node class="Sequence" id="14">
+            <node class="Action" id="6">
+              <property Method="Self.STCommonAI::MoveBack()" />
+              <property ResultOption="BT_SUCCESS" />
+            </node>
+            <node class="Action" id="15">
+              <property Method="Self.STCommonAI::MoveBack()" />
+              <property ResultOption="BT_SUCCESS" />
+            </node>
+            <node class="Action" id="16">
+              <property Method="Self.STCommonAI::MoveBack()" />
+              <property ResultOption="BT_SUCCESS" />
+            </node>
+            <node class="Action" id="17">
+              <property Method="Self.STCommonAI::MoveBack()" />
+              <property ResultOption="BT_SUCCESS" />
+            </node>
+          </node>
+        </node>
+      </node>
+      <node class="Sequence" id="3">
+        <node class="DecoratorLoop" id="8">
+          <property Count="const int 20" />
+          <property DecorateWhenChildEnds="true" />
+          <property DoneWithinFrame="false" />
+          <node class="Action" id="13">
+            <property Method="Self.STCommonAI::MoveForward()" />
+            <property ResultOption="BT_SUCCESS" />
+          </node>
+        </node>
+      </node>
+      <node class="Sequence" id="4">
+        <node class="DecoratorLoop" id="9">
+          <property Count="const int 20" />
+          <property DecorateWhenChildEnds="true" />
+          <property DoneWithinFrame="false" />
+          <node class="Action" id="11">
+            <property Method="Self.STCommonAI::MoveRight()" />
+            <property ResultOption="BT_SUCCESS" />
+          </node>
+        </node>
+      </node>
+      <node class="Sequence" id="5">
+        <node class="DecoratorLoop" id="10">
+          <property Count="const int 20" />
+          <property DecorateWhenChildEnds="true" />
+          <property DoneWithinFrame="false" />
+          <node class="Action" id="12">
+            <property Method="Self.STCommonAI::MoveLeft()" />
+            <property ResultOption="BT_SUCCESS" />
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+</behavior>
