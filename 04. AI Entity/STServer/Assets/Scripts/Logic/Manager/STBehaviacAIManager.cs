@@ -40,7 +40,7 @@ namespace Manager
             return true;
         }
 
-        public void RegisterAent(behaviac.Agent agent)
+        public void RegisterAgent(behaviac.Agent agent)
         {
             mAgentList.Add(agent);
         }

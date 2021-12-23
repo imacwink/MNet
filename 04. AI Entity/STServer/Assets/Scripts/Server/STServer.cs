@@ -9,6 +9,7 @@ namespace Server
 {
     public class STServer
     {
+        private int mCnt = 100;
         private NetServer mServer;
         private List<string> mEntityIDList;
         private Dictionary<string, STEntityPostion> mEntityPostionDic;
@@ -29,6 +30,9 @@ namespace Server
         {
             if (null != mServer)
             {
+                // Add AI Entity
+                STEntityManager.GetInstance().CreateGhostEntities("STServerSceneRoot", mCnt);
+
                 mServer.Start();
             }
             else
@@ -39,6 +43,9 @@ namespace Server
 
         public void ProcessServerListen()
         {
+            // Add AI SendPosition
+            SendAIEntityPostionPacketToAll();
+
             NetIncomingMessage msg;
             while ((msg = mServer.ReadMessage()) != null)
             {
@@ -126,6 +133,8 @@ namespace Server
                         mEntityPostionDic[pEntityID].Z);
             });
 
+            SendSpawnAIEntityPacketToLocal(localConnect);
+
             System.Random random = new System.Random();
             SendLocalSpawnEntityToAll(all, entityID, random.Next(-3, 3), 0, random.Next(-3, 3));
         }
@@ -163,7 +172,7 @@ namespace Server
             mServer.SendMessage(outgoingMessage, all, NetDeliveryMethod.ReliableOrdered, 0);
 
             // Create Server Entity
-            STEntityManager.GetInstance().CreateEntity("STServerSceneRoot", packet, true);
+            STEntityManager.GetInstance().CreateEntity("STServerSceneRoot", packet);
         }
         #endregion
 
@@ -216,6 +225,58 @@ namespace Server
             NetOutgoingMessage outgoingMessage = mServer.CreateMessage();
             packet.Packet2NetOutgoingMessage(outgoingMessage);
             mServer.SendMessage(outgoingMessage, all, NetDeliveryMethod.ReliableOrdered, 0);
+        }
+        #endregion
+
+        #region AI Entity
+        public void SendSpawnAIEntityPacketToLocal(NetConnection localConnect)
+        {
+            Debug.Log("SendSpawnAIEntityPacketToLocal");
+
+            Dictionary<string, GameObject> aiEntities = STEntityManager.GetInstance().AllAIEntities();
+
+            foreach (var temp in aiEntities)
+            {
+                string strKey = temp.Key;
+                GameObject objValue = temp.Value;
+
+                NetOutgoingMessage outgoingMessage = mServer.CreateMessage();
+                STSpawnEntityPacket packet = new STSpawnEntityPacket();
+                packet.ID = strKey;
+                packet.X = objValue.transform.position.x;
+                packet.Y = objValue.transform.position.y;
+                packet.Z = objValue.transform.position.z;
+                packet.Packet2NetOutgoingMessage(outgoingMessage);
+
+                mServer.SendMessage(outgoingMessage, localConnect, NetDeliveryMethod.ReliableOrdered, 0);
+            }
+        }
+
+        public void SendAIEntityPostionPacketToAll()
+        {
+            //Debug.Log("SendAIEntityPostionPacketToAll");
+
+            List<NetConnection> all = mServer.Connections;
+
+            if (all.Count > 0)
+            {
+                Dictionary<string, GameObject> aiEntities = STEntityManager.GetInstance().AllAIEntities();
+
+                foreach (var temp in aiEntities)
+                {
+                    string strKey = temp.Key;
+                    GameObject objValue = temp.Value;
+
+                    STEntityPositionPacket packet = new STEntityPositionPacket();
+                    packet.ID = strKey;
+                    packet.X = objValue.transform.position.x;
+                    packet.Y = objValue.transform.position.y;
+                    packet.Z = objValue.transform.position.z;
+                    NetOutgoingMessage outgoingMessage = mServer.CreateMessage();
+                    packet.Packet2NetOutgoingMessage(outgoingMessage);
+                    mServer.SendMessage(outgoingMessage, all, NetDeliveryMethod.ReliableOrdered, 0);
+                }
+            }
         }
         #endregion
 

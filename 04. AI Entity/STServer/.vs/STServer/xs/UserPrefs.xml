@@ -1,0 +1,52 @@
+﻿<Properties StartupConfiguration="{E4B0AFDC-EC66-396C-4362-A7C62DDF5B0E}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Server/STServer.cs">
+    <Files>
+      <File FileName="Assets/Scripts/STBoot.cs" Line="1" Column="1" />
+      <File FileName="Assets/External/behaviac/ai/exported/server_player_ai.xml" Line="52" Column="57" />
+      <File FileName="Assets/Scripts/Server/STServer.cs" Line="12" Column="30" />
+      <File FileName="Assets/Scripts/Logic/AI/STCommonAI.cs" Line="25" Column="99" />
+      <File FileName="Assets/Scripts/Logic/Manager/STBehaviacAIManager.cs" Line="45" Column="23" />
+      <File FileName="Assets/Scripts/Logic/Manager/STClientNetworkManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Logic/UI/UIServer/UIOBSelect.cs" Line="26" Column="20" />
+      <File FileName="Assets/Scripts/Logic/UI/UIServer/UIServer.cs" Line="30" Column="31" />
+      <File FileName="Assets/Scripts/Logic/Manager/STEntityManager.cs" Line="140" Column="49" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="STServer" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="External" expanded="True">
+                <Node name="behaviac" expanded="True">
+                  <Node name="ai" expanded="True">
+                    <Node name="exported" expanded="True" />
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="Scripts" expanded="True">
+                <Node name="Logic" expanded="True">
+                  <Node name="AI" expanded="True" />
+                  <Node name="Input" expanded="True" />
+                  <Node name="Manager" expanded="True" />
+                  <Node name="UI" expanded="True">
+                    <Node name="UIServer" expanded="True" />
+                  </Node>
+                </Node>
+                <Node name="Server" expanded="True">
+                  <Node name="STServer.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="02c0c9a4-b080-42ee-9b61-bce675d54f4b" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

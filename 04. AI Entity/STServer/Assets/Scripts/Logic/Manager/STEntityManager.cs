@@ -9,16 +9,23 @@ namespace Manager
     {
         public string mLocalEntityID { get; set; }
         public Dictionary<string, GameObject> mEntityDic { get; set; }
+        public Dictionary<string, GameObject> mAIEntityDic { get; set; }
 
         public void Init()
         {
             mLocalEntityID = "";
             mEntityDic = new Dictionary<string, GameObject>();
+            mAIEntityDic = new Dictionary<string, GameObject>();
         }
 
         public Dictionary<string, GameObject> AllEntities()
         {
             return mEntityDic;
+        }
+
+        public Dictionary<string, GameObject> AllAIEntities()
+        {
+            return mAIEntityDic;
         }
 
         public void CreateEntity(string strRoot, STSpawnEntityPacket packet, bool isGhost = false)
@@ -76,7 +83,9 @@ namespace Manager
                     Debug.LogError("btload error !!!");
                 }
                 ai.SetIdFlag(1);
-                STBehaviacAIManager.GetInstance().RegisterAent(ai);
+                STBehaviacAIManager.GetInstance().RegisterAgent(ai);
+
+                mAIEntityDic.Add(packet.ID, entityInstance);
             }
 
             EntityChange();
@@ -117,6 +126,20 @@ namespace Manager
         private void EntityChange()
         {
             STGlobalEventNotify.GetInstance().SetEvent((int)STGlobalEventDef.EVENT_CMD_UPDATE_OBS_ENTITY, null);
+        }
+
+        public void CreateGhostEntities(string strRoot, int iCnt)
+        {
+            System.Random random = new System.Random();
+            for (int i = 0; i < iCnt; i++)
+            {
+                STSpawnEntityPacket stPacket = new STSpawnEntityPacket();
+                stPacket.ID = System.Convert.ToString(i + 100);
+                stPacket.X = random.Next(-10, 10);
+                stPacket.Y = 0;
+                stPacket.Z = random.Next(-10, 10);
+                CreateEntity(strRoot, stPacket, true);
+            }
         }
     }
 }

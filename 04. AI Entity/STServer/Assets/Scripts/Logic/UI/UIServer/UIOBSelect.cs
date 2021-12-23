@@ -11,7 +11,7 @@ public class UIOBSelect : MonoBehaviour
     private Dropdown mDropdown;
     private int mSelectedIndex;
 
-    void Start()
+    void Awake()
     {
         mDropdown = GetComponent<Dropdown>();
         AddDropdownListener(OnDropdownValueChange);
@@ -36,6 +36,8 @@ public class UIOBSelect : MonoBehaviour
     public void UpdateOBPlayerEvent(int iEventID, System.Object args)
     {
         Dictionary<string, GameObject> all = STEntityManager.GetInstance().AllEntities();
+
+        if (null == mDropdown) return;
 
         mDropdown.ClearOptions();
 
