@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Common;
-using Client;
-using Lidgren.Network;
 using Protocol;
 
 namespace Manager
@@ -10,20 +8,29 @@ namespace Manager
     public class STEntityManager : STMonoSingleton<STEntityManager>
     {
         public string mLocalEntityID { get; set; }
-        public STClient mSTClient { get; set; }
         public Dictionary<string, GameObject> mEntityDic { get; set; }
+        public Dictionary<string, GameObject> mAIEntityDic { get; set; }
 
-        public void Init(int iPort, string strServerIP, string strServerName)
+        public void Init()
         {
             mLocalEntityID = "";
-            mSTClient = new STClient(strServerName);
-            mSTClient.StartClient(iPort, strServerIP);
             mEntityDic = new Dictionary<string, GameObject>();
+            mAIEntityDic = new Dictionary<string, GameObject>();
         }
 
-        public void SpawnEntity(STSpawnEntityPacket packet)
+        public Dictionary<string, GameObject> AllEntities()
         {
-            Debug.Log("SpawnEntity Enity ID : " + packet.ID);
+            return mEntityDic;
+        }
+
+        public Dictionary<string, GameObject> AllAIEntities()
+        {
+            return mAIEntityDic;
+        }
+
+        public void CreateEntity(string strRoot, STSpawnEntityPacket packet, bool isGhost = false)
+        {
+            Debug.Log("CreateEntity ID : " + packet.ID);
 
             GameObject entityObj = (GameObject)Resources.Load("Entity");
             Vector3 position = new Vector3(packet.X, packet.Y, packet.Z);
@@ -31,7 +38,7 @@ namespace Manager
 
             GameObject entityInstance = Instantiate(entityObj, position, rotation);
 
-            GameObject entityRoot = GameObject.Find("STClientSceneRoot/GameRoot/EntityRoot");
+            GameObject entityRoot = GameObject.Find(strRoot + "/GameRoot/EntityRoot");
             if (null != entityRoot)
             {
                 entityInstance.transform.parent = entityRoot.transform;
@@ -39,39 +46,99 @@ namespace Manager
 
             mEntityDic.Add(packet.ID, entityInstance);
 
+            Transform cameraTrans = entityInstance.transform.Find("Main Camera");
+
             if (packet.ID == mLocalEntityID)
             {
                 entityInstance.AddComponent<STController>();
                 entityInstance.transform.name = "LocalEntity";
+                if (null != cameraTrans)
+                {
+                    cameraTrans.gameObject.SetActive(true);
+                }
             }
             else
             {
+                entityInstance.AddComponent<STMovement>();
                 entityInstance.transform.name = packet.ID;
+                if (null != cameraTrans)
+                {
+                    cameraTrans.gameObject.SetActive(false);
+                }
             }
-        }
 
-        public void SendPosition(float x, float y, float z)
-        {
-            Debug.Log("SendPosition : [ " + x + "、" + y + "、" + z + "]");
-
-            NetOutgoingMessage msg = mSTClient.mClient.CreateMessage();
-            new STEntityPositionPacket() { ID = mLocalEntityID, X = x, Y = y, Z = z }.Packet2NetOutgoingMessage(msg);
-            mSTClient.mClient.SendMessage(msg, NetDeliveryMethod.ReliableOrdered);
-            mSTClient.mClient.FlushSendQueue();
-        }
-
-        public void SendDisconnect()
-        {
-            if (null != mSTClient)
+            if (isGhost)
             {
-                NetOutgoingMessage msg = mSTClient.mClient.CreateMessage();
-                new STEntityDisconnectsPacket() { ID = mLocalEntityID }.Packet2NetOutgoingMessage(msg);
-                mSTClient.mClient.SendMessage(msg, NetDeliveryMethod.ReliableOrdered);
-                mSTClient.mClient.FlushSendQueue();
-                mSTClient.mClient.Disconnect("Bye bye!");
+                GameObject aiObj = new GameObject("server_player_ai");
+                aiObj.transform.parent = entityInstance.transform;
+                aiObj.name = "server_player_ai";
+                STCommonAI ai = aiObj.AddComponent<STCommonAI>();
+                ai.InitAI(aiObj.name);
+                if (ai.btload(aiObj.name))
+                {
+                    ai.btsetcurrent(aiObj.name);
+                }
+                else
+                {
+                    Debug.LogError("btload error !!!");
+                }
+                ai.SetIdFlag(1);
+                STBehaviacAIManager.GetInstance().RegisterAgent(ai);
 
-                mSTClient.ShutDown();
-                mSTClient = null;
+                mAIEntityDic.Add(packet.ID, entityInstance);
+            }
+
+            EntityChange();
+        }
+
+        public void UpdateEntity(STEntityPositionPacket packet)
+        {
+            if (mEntityDic.ContainsKey(packet.ID))
+            {
+                GameObject obj = mEntityDic[packet.ID];
+                if (null != obj)
+                {
+                    STMovement stMovement = obj.GetComponent<STMovement>();
+                    if (null != stMovement)
+                    {
+                        stMovement.SetMovePosition(new Vector3(packet.X, packet.Y, packet.Z));
+                    }
+                }
+            }
+
+            EntityChange();
+        }
+
+        public void RemoveEntity(string strPacketID)
+        {
+            if (mEntityDic.ContainsKey(strPacketID))
+            {
+                GameObject obj = mEntityDic[strPacketID];
+                if (null != obj)
+                    MonoBehaviour.Destroy(obj);
+
+                mEntityDic.Remove(strPacketID);
+            }
+
+            EntityChange();
+        }
+
+        private void EntityChange()
+        {
+            STGlobalEventNotify.GetInstance().SetEvent((int)STGlobalEventDef.EVENT_CMD_UPDATE_OBS_ENTITY, null);
+        }
+
+        public void CreateGhostEntities(string strRoot, int iCnt)
+        {
+            System.Random random = new System.Random();
+            for (int i = 0; i < iCnt; i++)
+            {
+                STSpawnEntityPacket stPacket = new STSpawnEntityPacket();
+                stPacket.ID = System.Convert.ToString(i + 100);
+                stPacket.X = random.Next(-10, 10);
+                stPacket.Y = 0;
+                stPacket.Z = random.Next(-10, 10);
+                CreateEntity(strRoot, stPacket, true);
             }
         }
     }

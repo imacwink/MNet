@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 873428892}
   - component: {fileID: 873428891}
   - component: {fileID: 873428890}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -453,7 +452,7 @@ GameObject:
   - component: {fileID: 1001353317}
   - component: {fileID: 1001353316}
   - component: {fileID: 1001353315}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: Ground (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +498,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -550,7 +548,7 @@ GameObject:
   - component: {fileID: 1036957922}
   - component: {fileID: 1036957921}
   - component: {fileID: 1036957920}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: Ground (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +594,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -713,7 +710,7 @@ GameObject:
   - component: {fileID: 1210524514}
   - component: {fileID: 1210524513}
   - component: {fileID: 1210524512}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,7 +756,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -909,7 +905,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1243763862}
   - component: {fileID: 1243763864}
-  - component: {fileID: 1243763863}
   m_Layer: 5
   m_Name: UICamera
   m_TagString: MainCamera
@@ -931,14 +926,6 @@ Transform:
   m_Father: {fileID: 632143397}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1243763863
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243763861}
-  m_Enabled: 1
 --- !u!20 &1243763864
 Camera:
   m_ObjectHideFlags: 0
@@ -994,7 +981,7 @@ GameObject:
   - component: {fileID: 1260684611}
   - component: {fileID: 1260684610}
   - component: {fileID: 1260684609}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: Ground (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1040,7 +1027,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1108,7 +1094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d02cd57fb73e47d690769aa3d839bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mServerIP: 127.0.0.1
+  mServerIP: 172.21.2.118
   mPort: 6337
   mServerName: MNetSimple
   mBack: {fileID: 2039159854}
@@ -1140,7 +1126,7 @@ GameObject:
   - component: {fileID: 1527407322}
   - component: {fileID: 1527407321}
   - component: {fileID: 1527407320}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: Ground (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1186,7 +1172,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1237,7 +1222,7 @@ GameObject:
   - component: {fileID: 1527771240}
   - component: {fileID: 1527771239}
   - component: {fileID: 1527771238}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: Ground (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1283,7 +1268,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1334,7 +1318,7 @@ GameObject:
   - component: {fileID: 1650590240}
   - component: {fileID: 1650590239}
   - component: {fileID: 1650590238}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: Ground (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1380,7 +1364,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1431,7 +1414,7 @@ GameObject:
   - component: {fileID: 1775349122}
   - component: {fileID: 1775349121}
   - component: {fileID: 1775349120}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: Ground (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1477,7 +1460,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1775,7 +1757,7 @@ GameObject:
   - component: {fileID: 2112657950}
   - component: {fileID: 2112657949}
   - component: {fileID: 2112657948}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: Ground (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1821,7 +1803,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1869,7 +1850,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2122392811}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: ArtRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

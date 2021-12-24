@@ -21,7 +21,7 @@ namespace Server
 
             NetPeerConfiguration config = new NetPeerConfiguration(strServerName);
             config.MaximumConnections = iMaxConn;
-            config.LocalAddress = NetUtility.Resolve(strIP);
+            //config.LocalAddress = NetUtility.Resolve(strIP);
             config.Port = iPort;
             mServer = new NetServer(config);
         }

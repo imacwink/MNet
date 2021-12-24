@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d02cd57fb73e47d690769aa3d839bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mServerIP: 127.0.0.1
+  mServerIP: 172.21.2.118
   mPort: 6337
   mServerName: MNetSimple
   mBack: {fileID: 2039159854}
