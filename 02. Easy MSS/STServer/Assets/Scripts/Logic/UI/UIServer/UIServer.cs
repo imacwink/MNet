@@ -20,7 +20,7 @@ public class UIServer : MonoBehaviour
     {
         mBack.onClick.AddListener(OnBackEvent);
 
-        Application.targetFrameRate = 30; // 后续会设置到 UI 中进行动态配配置;
+        Time.fixedDeltaTime = 1f / 60; // 后续会设置到 UI 中进行动态配配置;
 
         mServer = new STServer(mMaximumConnections, mPort, mServerIP, mServerName);
         mServer.StartServer();
@@ -37,7 +37,7 @@ public class UIServer : MonoBehaviour
         STStateMachine.ChangeState(STStateConfig.s_stateName);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (mServer != null)
         {

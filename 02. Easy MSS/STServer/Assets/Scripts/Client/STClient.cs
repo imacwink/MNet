@@ -25,7 +25,6 @@ namespace Client
 
 			mClient = new NetClient(config);
 			mClient.RegisterReceivedCallback(new SendOrPostCallback(ProcessIncomingMessage));
-
 		}
 
 		public void StartClient(int port, string server)

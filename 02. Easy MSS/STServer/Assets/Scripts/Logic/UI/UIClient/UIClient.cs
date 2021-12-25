@@ -18,6 +18,8 @@ public class UIClient : MonoBehaviour
 
     void Start()
     {
+        Time.fixedDeltaTime = 1f / 60;
+
         mBack.onClick.AddListener(OnBackEvent);
 
         STEntityManager.GetInstance().Init(mPort, mServerIP, mServerName);

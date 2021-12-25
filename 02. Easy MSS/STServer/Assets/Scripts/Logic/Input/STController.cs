@@ -18,7 +18,7 @@ public class STController : MonoBehaviour
         mMovement = GetComponent<STMovement>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         mKey_Left = UnityEngine.Input.GetKey(KeyCode.LeftArrow) || UnityEngine.Input.GetKey(KeyCode.A);
         mKey_Right = UnityEngine.Input.GetKey(KeyCode.RightArrow) || UnityEngine.Input.GetKey(KeyCode.D);

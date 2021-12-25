@@ -13,7 +13,7 @@ public class STMovement : MonoBehaviour
         mMovePosition = transform.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (speed != 0f)
             transform.position = Vector3.MoveTowards(transform.position, mMovePosition, speed * Time.deltaTime);
